@@ -13,14 +13,29 @@ public class WorldMap implements IPositionChangeObserver {
 
     private int width;
     private int height;
+    private Vector2d lowerLeft;
+    private Vector2d upperRight;
 
     private Map<Vector2d, List<Animal>> animalMap = new LinkedHashMap<>();
     private Map<Vector2d, Grass> grassMap = new LinkedHashMap<>();
 
+    public WorldMap(int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.lowerLeft = new Vector2d(0,0);
+        this.upperRight = new Vector2d(width - 1, height - 1);
+    }
+
     public boolean canMoveTo(Vector2d pos) {
-        List<Animal> animals = animalMap.get(pos);
-        if (animals == null) return true;
-        return animals.size() < 2;
+        return isInBoundaries(pos);
+    }
+
+    public Vector2d getReducedPosition(Vector2d pos) {
+        return new Vector2d((pos.x + width) % width, (pos.y + height) % height);
+    }
+
+    private boolean isInBoundaries(Vector2d pos) {
+        return lowerLeft.precedes(pos) && upperRight.follows(pos);
     }
 
     public void place(Animal animal) {
@@ -32,6 +47,13 @@ public class WorldMap implements IPositionChangeObserver {
         List<Animal> newAnimals = new ArrayList<>();
         newAnimals.add(animal);
         animalMap.put(animal.getPosition(), newAnimals);
+    }
+
+    // dunno if to throw exception or let it pass
+    public void place(Grass grass) {
+        if (!isOccupied(grass.getPosition())) {
+            grassMap.put(grass.getPosition(), grass);
+        }
     }
 
     public boolean isOccupied(Vector2d pos) {
@@ -55,6 +77,10 @@ public class WorldMap implements IPositionChangeObserver {
 
         if (!animals.remove(animal)) {
             throw new IllegalArgumentException("animal has not been found on previous position");
+        }
+
+        if (!isInBoundaries(animal.getPosition())) {
+            throw new IllegalArgumentException("animal has been moved to forbidden position");
         }
 
         if (animals.isEmpty()) {

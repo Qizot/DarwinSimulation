@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45dd270f-0b92-4f90-b82a-a573973a20f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TODO.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/config/SimulationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/world/JungleWatcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarwinSimulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DarwinSimulator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/DarwinSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/DarwinSimulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/movement/IPositionChangeObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/movement/IPositionChangeObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/movement/MoveDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/movement/MoveDirection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/Grass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/WorldMap.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -85,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1574851638312</updated>
       <workItem from="1574851641511" duration="1845000" />
-      <workItem from="1574882122657" duration="11190000" />
+      <workItem from="1574882122657" duration="14502000" />
     </task>
     <servers />
   </component>
