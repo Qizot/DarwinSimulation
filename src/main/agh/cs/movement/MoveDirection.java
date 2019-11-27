@@ -21,12 +21,12 @@ public enum MoveDirection {
     static {
         mappedDirections = new LinkedHashMap<>();
         mappedDirections.put(new Vector2d(0, 1), MoveDirection.N);
-        mappedDirections.put((new Vector2d(1,1), MoveDirection.NE),
-        mappedDirections.put(new Vector2d(-1,1), MoveDirection.NW),
-        mappedDirections.put(new Vector2d(1,0), MoveDirection.E),
-        mappedDirections.put(new Vector2d(-1,0), MoveDirection.W),
-        mappedDirections.put(new Vector2d(1,-1), MoveDirection.SE),
-        mappedDirections.put(new Vector2d(-1,-1), MoveDirection.SW),
+        mappedDirections.put(new Vector2d(1,1), MoveDirection.NE);
+        mappedDirections.put(new Vector2d(-1,1), MoveDirection.NW);
+        mappedDirections.put(new Vector2d(1,0), MoveDirection.E);
+        mappedDirections.put(new Vector2d(-1,0), MoveDirection.W);
+        mappedDirections.put(new Vector2d(1,-1), MoveDirection.SE);
+        mappedDirections.put(new Vector2d(-1,-1), MoveDirection.SW);
         mappedDirections.put(new Vector2d(0,-1), MoveDirection.S);
     }
 
@@ -59,6 +59,4 @@ public enum MoveDirection {
         int y = (int)Math.round(r * Math.sin(newAngle));
         return mapVectorToDirection(new Vector2d(x, y));
     }
-
-
 }

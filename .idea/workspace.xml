@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="45dd270f-0b92-4f90-b82a-a573973a20f8" name="Default Changelist" comment="" />
+    <list default="true" id="45dd270f-0b92-4f90-b82a-a573973a20f8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TODO.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/config/SimulationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DarwinSimulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DarwinSimulator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/DarwinSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/DarwinSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/movement/IPositionChangeObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/movement/IPositionChangeObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/movement/MoveDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/movement/MoveDirection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/WorldMap.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,12 +28,21 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1UCDMqgpOjr17nUiZqTqFwTAX8u" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Projects/obiektowka/PO" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -64,11 +85,22 @@
       <option name="presentableId" value="Default" />
       <updated>1574851638312</updated>
       <workItem from="1574851641511" duration="1845000" />
-      <workItem from="1574882122657" duration="7748000" />
+      <workItem from="1574882122657" duration="11190000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

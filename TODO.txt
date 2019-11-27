@@ -1,0 +1,1 @@
+- resolve a problem of boundry colapsing (when animals go over boarder it appears on the bottom of the map)
