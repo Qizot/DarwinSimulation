@@ -14,6 +14,7 @@ public class SimulationConfig {
     private double jungleRatio;
     private int startAnimals;
     private int startPlants;
+    private int animationSpeed;
 
     static public SimulationConfig loadConfigFromFile(String filename) throws FileNotFoundException {
         Gson gson = new Gson();
@@ -80,7 +81,15 @@ public class SimulationConfig {
         return startPlants;
     }
 
-    public void setStartPlants(int startAnimals) {
+    public void setStartPlants(int startPlants) {
         this.startPlants = startPlants;
+    }
+
+    public int getAnimationSpeed() {
+        return animationSpeed;
+    }
+
+    public void setAnimationSpeed(int animationSpeed) {
+        this.animationSpeed = animationSpeed;
     }
 }

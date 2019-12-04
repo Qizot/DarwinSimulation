@@ -25,19 +25,25 @@ public class DarwinSimulator extends  JPanel {
 
     public DarwinSimulator() throws FileNotFoundException {
         config = SimulationConfig.loadConfigFromFile("/home/jakub/repos/DarwinSimulator/config.json");
+        this.animationTick = config.getAnimationSpeed();
         map = new WorldMap(config);
         System.out.println("Initialized map");
         controller = new SimulationCycleController(map);
         System.out.println("Initialized simulation controller");
-        add(new AnimationMap(map));
+
+        AnimationMap animationMap = new AnimationMap(map);
+
+        animalsLabel.setOpaque(true);
+        grassLabel.setOpaque(true);
 
         Box box = Box.createVerticalBox();
         box.add(animalsLabel);
         box.add(grassLabel);
-        add(box, BorderLayout.NORTH);
-        animalsLabel.setPreferredSize(new Dimension(100,40));
+        add(box);
+        add(animationMap);
 
-        grassLabel.setPreferredSize(new Dimension(100,40));
+        animalsLabel.setPreferredSize(new Dimension(120,40));
+        grassLabel.setPreferredSize(new Dimension(120,40));
 
         Runnable animate = new Runnable() {
             public void run() {
