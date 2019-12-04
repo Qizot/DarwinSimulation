@@ -12,6 +12,7 @@ public class Genome {
 
     private Genome(List<Integer> genes) {
         this.genes = genes;
+        this.recombineGenes();
     }
 
     public List<Integer> getGenes() {
@@ -25,6 +26,31 @@ public class Genome {
         }
         genes.sort(Integer::compare);
         return new Genome(genes);
+    }
+
+    // when some type of gene is not present, add one
+    private void recombineGenes() {
+        int[] geneTypesCount = new int [8];
+        for (int i = 0; i < 8; i++)
+            geneTypesCount[i] = 0;
+
+        genes.forEach(g -> geneTypesCount[g] += 1);
+
+        for (int i = 0; i < 8; i++) {
+            if (geneTypesCount[i] == 0) {
+                for (int j = 0; j < 8; j++) {
+                    if (geneTypesCount[j] > 1) {
+                        geneTypesCount[i] += 1;
+                        geneTypesCount[j] -= 1;
+                        genes.remove(j);
+                        genes.add(i);
+                        break;
+                    }
+                }
+            }
+        }
+
+        genes.sort(Integer::compare);
     }
 
     static public Genome combineGenomes(Genome first, Genome second) {

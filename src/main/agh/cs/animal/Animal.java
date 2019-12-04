@@ -13,6 +13,7 @@ public class Animal {
     private Genome genome;
     private final int entryEnergy;
     private int energy;
+    private Random rand = new Random();
 
     public Animal(WorldMap map, Vector2d position, int entryEnergy) {
         this.map = map;
@@ -41,25 +42,48 @@ public class Animal {
         return genome;
     }
 
-    WorldMap getMap() {
-        return map;
+    public Vector2d getPosition() {
+        return position;
     }
 
-    int getEnergy() {
-        return energy;
+    public MoveDirection getDirection() { return direction; }
+
+    @Override
+    public String toString() {
+        return "A";
     }
 
-    int getEntryEnergy() {
-        return entryEnergy;
-    }
+
 
     public boolean isDead() {
         return energy <= 0;
     }
 
-    public Vector2d getPosition() {
-        return position;
+    public int getEntryEnergy() {
+        return entryEnergy;
     }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public void feedEnergy(int energyPortion) {
+        this.energy += energyPortion;
+    }
+
+    public void takeEnergy(int energyPortion) {
+        this.energy -= energyPortion;
+    }
+
+    WorldMap getMap() {
+        return map;
+    }
+
+
+
+
+
+
 
     public int releaseEnergyForBaby() {
         int babyEnergy = energy / 4;
@@ -68,29 +92,16 @@ public class Animal {
     }
 
     private int getNextRotation () {
-        List<Integer> genes = genome.getGenes();
-        List<Pair<Integer, Integer>> rotates = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            rotates.add(new Pair<Integer, Integer>(i, Collections.frequency(genes, i)));
-        }
-        rotates.sort(Comparator.comparing(p -> -p.getValue()));
-
-        return rotates.stream().map(Pair::getKey).mapToInt(i->i).findFirst().orElseThrow();
+        return genome.getGenes().get(rand.nextInt(32));
     }
 
-
-
-    @Override
-    public String toString() {
-        return "A";
-    }
-
-    public MoveDirection getDirection() { return direction; }
-
-    // rotate should not be included in move
-    public void move() {
+    public void rotate() {
         this.direction = direction.rotate(getNextRotation());
-        Vector2d newPosition = this.position.add(direction.getUnitVector());
+    }
+
+    public void move() {
+        // bad, bad design, animal shouldn't be responsible for remembering that
+        Vector2d newPosition = this.map.getReducedPosition(position.add(direction.getUnitVector()));
         if(map.canMoveTo(newPosition)) {
             Vector2d old = position;
             position = newPosition;

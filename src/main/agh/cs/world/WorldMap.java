@@ -1,27 +1,87 @@
 package agh.cs.world;
 
 import agh.cs.animal.Animal;
+import agh.cs.config.SimulationConfig;
 import agh.cs.movement.IPositionChangeObserver;
+import agh.cs.movement.LandBoundary;
 import agh.cs.movement.Vector2d;
+import agh.cs.vizualization.MapVisualizable;
+import agh.cs.vizualization.MapVisualizer;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class WorldMap implements IPositionChangeObserver {
+public class WorldMap implements IPositionChangeObserver, MapVisualizable {
 
-    private int width;
-    private int height;
-    private Vector2d lowerLeft;
-    private Vector2d upperRight;
+    private SimulationConfig config;
+    private JungleWatcher jungleWatcher;
+    private GrasslandWatcher grasslandWatcher;
+
+    private LandBoundary boundary;
 
     private Map<Vector2d, List<Animal>> animalMap = new LinkedHashMap<>();
     private Map<Vector2d, Grass> grassMap = new LinkedHashMap<>();
 
-    public WorldMap(int width, int height) {
-        this.width = width;
-        this.height = height;
-        this.lowerLeft = new Vector2d(0,0);
-        this.upperRight = new Vector2d(width - 1, height - 1);
+    public WorldMap(SimulationConfig config) {
+        this.config = config;
+        this.boundary = new LandBoundary(
+            new Vector2d(0,0),
+                new Vector2d(config.getWidth() - 1, config.getHeight() - 1)
+        );
+
+        LandBoundary jungleBoundary = generateJungleBoundaries();
+        this.jungleWatcher = new JungleWatcher(this, jungleBoundary, config.getPlantEnergy());
+
+        List<LandBoundary> skipLands = new ArrayList<>();
+        skipLands.add(jungleBoundary);
+        this.grasslandWatcher = new GrasslandWatcher(this, boundary, skipLands, config.getPlantEnergy());
+
+        generateStartingAnimals();
+    }
+
+    private void generateStartingAnimals() {
+        Random rand = new Random();
+
+        for (int i = 0; i < config.getStartAnimals(); i++) {
+            int x = rand.nextInt(config.getWidth());
+            int y = rand.nextInt(config.getHeight());
+            new Animal(this, new Vector2d(x, y), config.getStartEnergy());
+        }
+    }
+
+    private LandBoundary generateJungleBoundaries() {
+        double ratio = this.config.getJungleRatio();
+        if (ratio > 1.0) {
+            throw new IllegalArgumentException("jungle ratio cannot be more than 1");
+        }
+
+        int jungleWidth = (int)Math.ceil(this.config.getWidth() * ratio);
+        int jungleHeight = (int)Math.ceil(this.config.getHeight() * ratio);
+        Vector2d lowerLeft = new Vector2d((this.config.getWidth() - jungleWidth)/2, (this.config.getHeight() - jungleHeight)/2);
+        Vector2d upperRight = new Vector2d(lowerLeft.x + jungleWidth, lowerLeft.y + jungleHeight);
+        return new LandBoundary(lowerLeft, upperRight);
+    }
+
+    public SimulationConfig getConfig() {
+        return config;
+    }
+
+    public List<Animal> getAnimals() {
+        return animalMap.values().stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+    }
+
+    public List<Animal> getAnimalsAt(Vector2d pos) {
+        return animalMap.get(pos);
+    }
+
+    public List<List<Animal>> getStackedAnimals() {
+        return new ArrayList<>(animalMap.values());
+    }
+
+    public List<Grass> getGrasses() {
+        return new ArrayList<>(grassMap.values());
     }
 
     public boolean canMoveTo(Vector2d pos) {
@@ -29,11 +89,13 @@ public class WorldMap implements IPositionChangeObserver {
     }
 
     public Vector2d getReducedPosition(Vector2d pos) {
+        int width = config.getWidth();
+        int height = config.getHeight();
         return new Vector2d((pos.x + width) % width, (pos.y + height) % height);
     }
 
     private boolean isInBoundaries(Vector2d pos) {
-        return lowerLeft.precedes(pos) && upperRight.follows(pos);
+        return boundary.getLowerLeft().precedes(pos) && boundary.getUpperRight().follows(pos);
     }
 
     public void place(Animal animal) {
@@ -55,12 +117,12 @@ public class WorldMap implements IPositionChangeObserver {
     }
 
     public boolean isOccupied(Vector2d pos) {
-        return false;
+        return (animalMap.get(pos) != null || grassMap.get(pos) != null);
     }
 
     public Object objectAt(Vector2d pos) {
         List<Animal> animals = animalMap.get(pos);
-        if (animals.isEmpty()) {
+        if (animals == null) {
             return grassMap.get(pos);
         }
         return animals.get(0);
@@ -103,21 +165,14 @@ public class WorldMap implements IPositionChangeObserver {
         grassMap.remove(grass.getPosition());
     }
 
-    void removeDeadAnimals() {
-       animalMap.values().stream()
-                .flatMap(Collection::stream)
-                .filter(Animal::isDead)
-                .forEach(this::remove);
+    void replantGrass() {
+        this.jungleWatcher.plantGrass();
+        this.grasslandWatcher.plantGrass();
     }
 
-    void rotateAnimals() {
-        animalMap.values().stream()
-                .flatMap(Collection::stream)
-                .forEach(Animal::rotate);
-    }
-
-    public void simulateNextCycle() {
-        removeDeadAnimals();
+    @Override
+    public String toString() {
+        return new MapVisualizer(this).draw(boundary.getLowerLeft(), boundary.getUpperRight());
     }
 }
 

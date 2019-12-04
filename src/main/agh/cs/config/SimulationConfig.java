@@ -12,6 +12,8 @@ public class SimulationConfig {
     private int moveEnergy;
     private int plantEnergy;
     private double jungleRatio;
+    private int startAnimals;
+    private int startPlants;
 
     static public SimulationConfig loadConfigFromFile(String filename) throws FileNotFoundException {
         Gson gson = new Gson();
@@ -64,5 +66,21 @@ public class SimulationConfig {
 
     public void setJungleRatio(double jungleRatio) {
         this.jungleRatio = jungleRatio;
+    }
+
+    public int getStartAnimals() {
+        return startAnimals;
+    }
+
+    public void setStartAnimals(int startAnimals) {
+        this.startAnimals = startAnimals;
+    }
+
+    public int getStartPlants() {
+        return startPlants;
+    }
+
+    public void setStartPlants(int startAnimals) {
+        this.startPlants = startPlants;
     }
 }

@@ -7,8 +7,7 @@ public class Breeder {
 
     static public Animal breed(Animal male, Animal female) {
         int entryEnergy = male.getEntryEnergy();
-
-        if (male.getEnergy() / 2 < entryEnergy || female.getEnergy() / 2 < entryEnergy) {
+        if (male.getEnergy() < entryEnergy / 2 || female.getEnergy() < entryEnergy / 2) {
             throw new IllegalArgumentException("either of parents doesn't have enough energy to make bebe");
         }
 
@@ -17,7 +16,6 @@ public class Breeder {
         Vector2d position = male.getPosition();
         Genome genome = Genome.combineGenomes(male.getGenome(), female.getGenome());
         int energy = male.releaseEnergyForBaby() + female.releaseEnergyForBaby();
-
         return new Animal(map, position, genome, entryEnergy, energy);
     }
 }
