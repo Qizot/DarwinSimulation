@@ -1,1 +1,2 @@
-- resolve a problem of boundry colapsing (when animals go over boarder it appears on the bottom of the map)
+- resolve a problem of boundry colapsing (when animals go over boarder it appears on the bottom of the map) DONE
+- removing dead bodies from map and spawning grass outside of the jungle

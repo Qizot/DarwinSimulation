@@ -59,4 +59,8 @@ public enum MoveDirection {
         int y = (int)Math.round(r * Math.sin(newAngle));
         return mapVectorToDirection(new Vector2d(x, y));
     }
+
+    public Vector2d getUnitVector() {
+        return unitVector;
+    }
 }

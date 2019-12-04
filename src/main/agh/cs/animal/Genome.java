@@ -1,30 +1,34 @@
 package agh.cs.animal;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Genome {
     static private Random rand = new Random();
     private static int genNum = 32;
-    private int[] genes;
+    private List<Integer> genes;
 
-    private Genome(int[] genes) {
+    private Genome(List<Integer> genes) {
         this.genes = genes;
     }
 
-    public int[] getGenes() {
+    public List<Integer> getGenes() {
         return genes;
     }
 
     static public Genome generateNewGenome() {
-        int[] genes = new int[genNum];
+        List<Integer> genes = new ArrayList<>();
         for (int i = 0; i < genNum; i++) {
-            genes[i] = rand.nextInt(8);
+            genes.add(rand.nextInt(8));
         }
+        genes.sort(Integer::compare);
         return new Genome(genes);
     }
 
     static public Genome combineGenomes(Genome first, Genome second) {
-        int[] newGenes = new int[genNum];
+        List<Integer> newGenes = new ArrayList<>();
 
         // search for space between elements up to which copy elements: e.g. _ | _ | _ _ | _
         // if we have n elements, there are n - 1 walls, then we copy elements till idx < wall_idx
@@ -37,25 +41,26 @@ public class Genome {
         }
 
         int i = 0;
-        int[] firstGenes = first.getGenes();
-        int[] secondGenes = second.getGenes();
+        List<Integer> firstGenes = first.getGenes();
+        List<Integer> secondGenes = second.getGenes();
 
         while (i < firstCut) {
-            newGenes[i] = firstGenes[i];
+            newGenes.add(firstGenes.get(i));
             i++;
         }
 
         while (i < secondCut) {
-            newGenes[i] = secondGenes[i];
+            newGenes.add(firstGenes.get(i));
             i++;
         }
 
         //
         while (i < genNum) {
-            newGenes[i] = firstGenes[i];
+            newGenes.add(firstGenes.get(i));
             i++;
         }
 
+        newGenes.sort(Integer::compare);
         return new Genome(newGenes);
     }
 }

@@ -4,10 +4,8 @@ import agh.cs.animal.Animal;
 import agh.cs.movement.IPositionChangeObserver;
 import agh.cs.movement.Vector2d;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WorldMap implements IPositionChangeObserver {
 
@@ -57,8 +55,7 @@ public class WorldMap implements IPositionChangeObserver {
     }
 
     public boolean isOccupied(Vector2d pos) {
-        List<Animal> animals = animalMap.get(pos);
-        return !(animals == null && grassMap.get(pos) == null);
+        return false;
     }
 
     public Object objectAt(Vector2d pos) {
@@ -88,6 +85,39 @@ public class WorldMap implements IPositionChangeObserver {
         }
 
         place(animal);
+    }
+
+    void remove(Animal animal) {
+        List<Animal> animals = animalMap.get(animal.getPosition());
+        if (animals == null) {
+            throw new IllegalArgumentException("animal has not been found on the map");
+        }
+
+        animals.remove(animal);
+        if (animals.isEmpty()) {
+            animalMap.remove(animal.getPosition());
+        }
+    }
+
+    void remove(Grass grass) {
+        grassMap.remove(grass.getPosition());
+    }
+
+    void removeDeadAnimals() {
+       animalMap.values().stream()
+                .flatMap(Collection::stream)
+                .filter(Animal::isDead)
+                .forEach(this::remove);
+    }
+
+    void rotateAnimals() {
+        animalMap.values().stream()
+                .flatMap(Collection::stream)
+                .forEach(Animal::rotate);
+    }
+
+    public void simulateNextCycle() {
+        removeDeadAnimals();
     }
 }
 

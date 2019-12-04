@@ -4,9 +4,7 @@ import agh.cs.movement.MoveDirection;
 import agh.cs.movement.Vector2d;
 import agh.cs.world.WorldMap;
 import javafx.util.Pair;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Animal {
     private WorldMap map;
@@ -55,6 +53,10 @@ public class Animal {
         return entryEnergy;
     }
 
+    public boolean isDead() {
+        return energy <= 0;
+    }
+
     public Vector2d getPosition() {
         return position;
     }
@@ -65,15 +67,15 @@ public class Animal {
         return babyEnergy;
     }
 
-    private int[] calculateRotatePossibilities() {
-        List<Integer> genes = Arrays.stream(genome.getGenes()).boxed().collect(Collectors.toList());
+    private int getNextRotation () {
+        List<Integer> genes = genome.getGenes();
         List<Pair<Integer, Integer>> rotates = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             rotates.add(new Pair<Integer, Integer>(i, Collections.frequency(genes, i)));
         }
-        Collections.sort(rotates, Comparator.comparing(p -> -p.getValue()));
+        rotates.sort(Comparator.comparing(p -> -p.getValue()));
 
-        return rotates.stream().map(Pair::getKey).mapToInt(i->i).toArray();
+        return rotates.stream().map(Pair::getKey).mapToInt(i->i).findFirst().orElseThrow();
     }
 
 
@@ -85,7 +87,14 @@ public class Animal {
 
     public MoveDirection getDirection() { return direction; }
 
+    // rotate should not be included in move
     public void move() {
-
+        this.direction = direction.rotate(getNextRotation());
+        Vector2d newPosition = this.position.add(direction.getUnitVector());
+        if(map.canMoveTo(newPosition)) {
+            Vector2d old = position;
+            position = newPosition;
+            map.positionChanged(this, old);
+        }
     }
 }
