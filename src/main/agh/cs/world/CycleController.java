@@ -9,4 +9,5 @@ public interface CycleController {
     void replantGrass();
     void breedAnimals();
     void performCycle();
+    int animalsAfterCycle();
 }

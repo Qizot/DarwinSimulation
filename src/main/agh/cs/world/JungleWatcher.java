@@ -26,7 +26,7 @@ public class JungleWatcher implements GrassPlanter {
         return boundary.getLowerLeft().precedes(pos) && boundary.getUpperRight().follows(pos);
     }
 
-    public void plantGrass() {
+    public void plantGrass(int n) {
         Vector2d lowerLeft = boundary.getLowerLeft();
         Vector2d upperRight = boundary.getUpperRight();
 
@@ -40,8 +40,12 @@ public class JungleWatcher implements GrassPlanter {
                 }
             }
         }
-        if (emptyPlaces.size() < 1) return;
-        Vector2d emptyPlace = emptyPlaces.get(rand.nextInt(emptyPlaces.size()));
-        map.place(new Grass(emptyPlace, grassEnergy));
+
+        for (int i = 0; i < n; i++) {
+            if (emptyPlaces.size() < 1) return;
+            Vector2d emptyPlace = emptyPlaces.get(rand.nextInt(emptyPlaces.size()));
+            emptyPlaces.remove(emptyPlace);
+            map.place(new Grass(emptyPlace, grassEnergy));
+        }
     }
 }

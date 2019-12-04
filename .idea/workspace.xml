@@ -2,33 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45dd270f-0b92-4f90-b82a-a573973a20f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/movement/LandBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/vizualization/AnimationMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/vizualization/ColorInterpolator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/vizualization/MapVisualizable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/vizualization/MapVisualizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/world/CycleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/world/GrassPlanter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/world/GrasslandWatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/agh/cs/world/SimulationCycleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/DarwinSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/DarwinSimulator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/animal/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/animal/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/animal/Breeder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/animal/Breeder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/animal/Genome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/animal/Genome.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/config/SimulationConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/config/SimulationConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/movement/MoveDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/movement/MoveDirection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/Grass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/Grass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/vizualization/AnimationMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/vizualization/AnimationMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/CycleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/CycleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/SimulationCycleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/SimulationCycleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/WorldMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DarwinSimulator/agh/cs/world/WorldMap.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/agh/cs/DarwinSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/DarwinSimulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/agh/cs/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/animal/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/animal/Breeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/animal/Breeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/animal/Genome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/animal/Genome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/config/SimulationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/config/SimulationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/JungleWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/JungleWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/vizualization/AnimationMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/vizualization/AnimationMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/CycleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/CycleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/SimulationCycleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/SimulationCycleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/agh/cs/world/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/agh/cs/world/WorldMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +115,7 @@
       <workItem from="1574882122657" duration="14608000" />
       <workItem from="1575460498138" duration="217000" />
       <workItem from="1575460737791" duration="3662000" />
-      <workItem from="1575470021466" duration="19910000" />
+      <workItem from="1575470021466" duration="22117000" />
     </task>
     <servers />
   </component>
@@ -165,22 +152,22 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="773" y="314" width="424" height="491" key="FileChooserDialogImpl/70.27.1850.1053@70.27.1850.1053" timestamp="1575477851855" />
-    <state width="1804" height="318" key="GridCell.Tab.0.bottom" timestamp="1575490254994">
+    <state width="1804" height="318" key="GridCell.Tab.0.bottom" timestamp="1575492680731">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1804" height="318" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1575490254994" />
-    <state width="1804" height="318" key="GridCell.Tab.0.center" timestamp="1575490254993">
+    <state width="1804" height="318" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1575492680731" />
+    <state width="1804" height="318" key="GridCell.Tab.0.center" timestamp="1575492680731">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1804" height="318" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1575490254993" />
-    <state width="1804" height="318" key="GridCell.Tab.0.left" timestamp="1575490254993">
+    <state width="1804" height="318" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1575492680731" />
+    <state width="1804" height="318" key="GridCell.Tab.0.left" timestamp="1575492680730">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1804" height="318" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1575490254993" />
-    <state width="1804" height="318" key="GridCell.Tab.0.right" timestamp="1575490254994">
+    <state width="1804" height="318" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1575492680730" />
+    <state width="1804" height="318" key="GridCell.Tab.0.right" timestamp="1575492680731">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1804" height="318" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1575490254994" />
+    <state width="1804" height="318" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1575492680731" />
     <state width="1804" height="340" key="GridCell.Tab.1.bottom" timestamp="1575484749603">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
@@ -209,9 +196,9 @@
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="560" y="106" width="869" height="894" key="find.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1575485082131" />
-    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1575484109477">
+    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1575491266355">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1575484109477" />
+    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1575491266355" />
   </component>
 </project>

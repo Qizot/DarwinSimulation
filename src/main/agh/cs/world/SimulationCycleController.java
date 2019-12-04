@@ -110,4 +110,9 @@ public class SimulationCycleController implements CycleController {
         breedAnimals();
         replantGrass();
     }
+
+    @Override
+    public int animalsAfterCycle() {
+        return currentlyProcessedAnimals.size();
+    }
 }

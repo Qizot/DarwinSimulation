@@ -37,6 +37,7 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
         this.grasslandWatcher = new GrasslandWatcher(this, boundary, skipLands, config.getPlantEnergy());
 
         generateStartingAnimals();
+        generateStartingPlants();
     }
 
     private void generateStartingAnimals() {
@@ -47,6 +48,14 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
             int y = rand.nextInt(config.getHeight());
             new Animal(this, new Vector2d(x, y), config.getStartEnergy());
         }
+    }
+
+    private void generateStartingPlants() {
+        int junglePlants = (int)Math.ceil(config.getJungleRatio() * config.getStartPlants());
+        int grasslandPlants = config.getStartPlants() - junglePlants;
+
+        this.jungleWatcher.plantGrass(junglePlants);
+        this.grasslandWatcher.plantGrass(grasslandPlants);
     }
 
     private LandBoundary generateJungleBoundaries() {
@@ -122,7 +131,7 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
 
     public Object objectAt(Vector2d pos) {
         List<Animal> animals = animalMap.get(pos);
-        if (animals == null) {
+        if (animals == null || animals.isEmpty()) {
             return grassMap.get(pos);
         }
         return animals.get(0);
@@ -166,8 +175,8 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
     }
 
     void replantGrass() {
-        this.jungleWatcher.plantGrass();
-        this.grasslandWatcher.plantGrass();
+        this.jungleWatcher.plantGrass(1);
+        this.grasslandWatcher.plantGrass(1);
     }
 
     @Override

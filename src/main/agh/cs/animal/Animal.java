@@ -54,7 +54,6 @@ public class Animal {
     }
 
 
-
     public boolean isDead() {
         return energy <= 0;
     }
@@ -78,12 +77,6 @@ public class Animal {
     WorldMap getMap() {
         return map;
     }
-
-
-
-
-
-
 
     public int releaseEnergyForBaby() {
         int babyEnergy = energy / 4;

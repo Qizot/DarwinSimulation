@@ -1,5 +1,5 @@
 package agh.cs.world;
 
 public interface GrassPlanter {
-    void plantGrass();
+    void plantGrass(int n);
 }

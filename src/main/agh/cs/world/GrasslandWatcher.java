@@ -27,7 +27,7 @@ public class GrasslandWatcher implements GrassPlanter  {
         return skipSpots.stream().anyMatch(ss -> ss.contains(pos));
     }
 
-    public void plantGrass() {
+    public void plantGrass(int n) {
         Vector2d lowerLeft = boundary.getLowerLeft();
         Vector2d upperRight = boundary.getUpperRight();
 
@@ -41,11 +41,12 @@ public class GrasslandWatcher implements GrassPlanter  {
                 }
             }
         }
-        if (emptyPlaces.size() < 1) {
-            return;
+        for (int i = 0; i < n; i++) {
+            if (emptyPlaces.size() < 1) return;
+            Vector2d emptyPlace = emptyPlaces.get(rand.nextInt(emptyPlaces.size()));
+            emptyPlaces.remove(emptyPlace);
+            map.place(new Grass(emptyPlace, grassEnergy));
         }
-        Vector2d emptyPlace = emptyPlaces.get(rand.nextInt(emptyPlaces.size()));
-        map.place(new Grass(emptyPlace, grassEnergy));
     }
 
 
