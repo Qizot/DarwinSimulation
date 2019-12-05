@@ -2,9 +2,11 @@ package agh.cs;
 
 import agh.cs.config.SimulationConfig;
 import agh.cs.vizualization.AnimationMap;
+import agh.cs.vizualization.PopulationChart;
 import agh.cs.world.CycleController;
 import agh.cs.world.SimulationCycleController;
 import agh.cs.world.WorldMap;
+import org.knowm.xchart.XChartPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,16 +22,17 @@ public class DarwinSimulator extends  JPanel {
     private WorldMap map;
     private  SimulationConfig config;
     private CycleController controller;
+    private PopulationChart chart;
     private JLabel animalsLabel = new JLabel();
     private JLabel grassLabel = new JLabel();
 
     public DarwinSimulator() throws FileNotFoundException {
         config = SimulationConfig.loadConfigFromFile("/home/jakub/repos/DarwinSimulator/config.json");
-        this.animationTick = config.getAnimationSpeed();
         map = new WorldMap(config);
-        System.out.println("Initialized map");
         controller = new SimulationCycleController(map);
-        System.out.println("Initialized simulation controller");
+        chart = new PopulationChart();
+
+        this.animationTick = config.getAnimationSpeed();
 
         AnimationMap animationMap = new AnimationMap(map);
 
@@ -39,8 +42,11 @@ public class DarwinSimulator extends  JPanel {
         Box box = Box.createVerticalBox();
         box.add(animalsLabel);
         box.add(grassLabel);
+
+
         add(box);
         add(animationMap);
+        chart.go();
 
         animalsLabel.setPreferredSize(new Dimension(120,40));
         grassLabel.setPreferredSize(new Dimension(120,40));
@@ -48,8 +54,11 @@ public class DarwinSimulator extends  JPanel {
         Runnable animate = new Runnable() {
             public void run() {
                 controller.performCycle();
-                animalsLabel.setText("Animals: " + Integer.toString(controller.animalsAfterCycle()));
-                grassLabel.setText("Grass: " + Integer.toString(map.getGrasses().size()));
+                int animals = controller.animalsAfterCycle();
+                int grass = map.getGrasses().size();
+                chart.addNewValues(animals, grass);
+                animalsLabel.setText("Animals: " + Integer.toString(animals));
+                grassLabel.setText("Grass: " + Integer.toString(grass));
                 repaint();
             }
         };
