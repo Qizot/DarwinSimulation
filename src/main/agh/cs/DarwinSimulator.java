@@ -30,7 +30,10 @@ public class DarwinSimulator extends  JPanel {
         config = SimulationConfig.loadConfigFromFile("/home/jakub/repos/DarwinSimulator/config.json");
         map = new WorldMap(config);
         controller = new SimulationCycleController(map);
-        chart = new PopulationChart();
+
+        if (config.getShowChart()) {
+            chart = new PopulationChart();
+        }
 
         this.animationTick = config.getAnimationSpeed();
 
@@ -46,7 +49,8 @@ public class DarwinSimulator extends  JPanel {
 
         add(box);
         add(animationMap);
-        chart.go();
+        if (chart != null)
+            chart.go();
 
         animalsLabel.setPreferredSize(new Dimension(120,40));
         grassLabel.setPreferredSize(new Dimension(120,40));
@@ -56,7 +60,8 @@ public class DarwinSimulator extends  JPanel {
                 controller.performCycle();
                 int animals = controller.animalsAfterCycle();
                 int grass = map.getGrasses().size();
-                chart.addNewValues(animals, grass);
+                if (chart != null)
+                    chart.addNewValues(animals, grass);
                 animalsLabel.setText("Animals: " + Integer.toString(animals));
                 grassLabel.setText("Grass: " + Integer.toString(grass));
                 repaint();

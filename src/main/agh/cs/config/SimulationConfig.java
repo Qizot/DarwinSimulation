@@ -15,6 +15,7 @@ public class SimulationConfig {
     private int startAnimals;
     private int startPlants;
     private int animationSpeed;
+    private boolean showChart;
 
     static public SimulationConfig loadConfigFromFile(String filename) throws FileNotFoundException {
         Gson gson = new Gson();
@@ -91,5 +92,13 @@ public class SimulationConfig {
 
     public void setAnimationSpeed(int animationSpeed) {
         this.animationSpeed = animationSpeed;
+    }
+
+    public boolean getShowChart() {
+        return showChart;
+    }
+
+    public void setShowChart(boolean showChart) {
+        this.showChart = showChart;
     }
 }
