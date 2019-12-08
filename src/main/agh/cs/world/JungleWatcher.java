@@ -33,7 +33,7 @@ public class JungleWatcher implements GrassPlanter {
         List<Vector2d> emptyPlaces = new ArrayList<>();
 
         for (int x = lowerLeft.x; x <= upperRight.x; x++) {
-            for (int y = lowerLeft.y; y <= upperRight.x; y++) {
+            for (int y = lowerLeft.y; y <= upperRight.y; y++) {
                 Vector2d slot = new Vector2d(x, y);
                 if (!map.isOccupied(slot)) {
                     emptyPlaces.add(slot);
