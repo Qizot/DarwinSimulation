@@ -21,6 +21,7 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
 
     private Map<Vector2d, List<Animal>> animalMap = new LinkedHashMap<>();
     private Map<Vector2d, Grass> grassMap = new LinkedHashMap<>();
+    private Map<Vector2d, Boolean> grassFreeSpots = new LinkedHashMap<>();
 
     public WorldMap(SimulationConfig config) {
         this.config = config;
@@ -51,6 +52,20 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
     }
 
     private void generateStartingPlants() {
+
+        List<Vector2d> occupied = getAnimals().stream().map(Animal::getPosition).collect(Collectors.toList());
+
+        List<Vector2d> freeSlots = new ArrayList<>();
+        for (int x = 0; x < config.getWidth(); x++) {
+            for (int y = 0; y < config.getHeight(); y++) {
+                freeSlots.add(new Vector2d(x, y));
+            }
+        }
+
+        freeSlots.removeAll(occupied);
+
+        freeSlots.forEach(v -> grassFreeSpots.put(v, true));
+
         int junglePlants = (int)Math.ceil(config.getJungleRatio() * config.getStartPlants());
         int grasslandPlants = config.getStartPlants() - junglePlants;
 
