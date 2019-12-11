@@ -1,12 +1,12 @@
 {
-  "width": 200,
-  "height": 200,
+  "width": 50,
+  "height": 50,
   "startEnergy": 200,
   "moveEnergy": 1,
-  "plantEnergy": 100,
+  "plantEnergy": 2,
   "jungleRatio": 0.4,
-  "startAnimals": 100,
-  "startPlants": 1000,
+  "startAnimals": 1000,
+  "startPlants": 100,
   "animationSpeed": 16,
   "showChart": false
 }

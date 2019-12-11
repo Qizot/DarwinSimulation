@@ -21,7 +21,7 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
 
     private Map<Vector2d, List<Animal>> animalMap = new LinkedHashMap<>();
     private Map<Vector2d, Grass> grassMap = new LinkedHashMap<>();
-    private Map<Vector2d, Boolean> grassFreeSpots = new LinkedHashMap<>();
+    private Set<Vector2d> grassFreeSpots = new HashSet<>();
 
     public WorldMap(SimulationConfig config) {
         this.config = config;
@@ -58,13 +58,12 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
         List<Vector2d> freeSlots = new ArrayList<>();
         for (int x = 0; x < config.getWidth(); x++) {
             for (int y = 0; y < config.getHeight(); y++) {
-                freeSlots.add(new Vector2d(x, y));
+                grassFreeSpots.add(new Vector2d(x, y));
             }
         }
 
-        freeSlots.removeAll(occupied);
+        grassFreeSpots.removeAll(occupied);
 
-        freeSlots.forEach(v -> grassFreeSpots.put(v, true));
 
         int junglePlants = (int)Math.ceil(config.getJungleRatio() * config.getStartPlants());
         int grasslandPlants = config.getStartPlants() - junglePlants;
@@ -131,12 +130,14 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
         List<Animal> newAnimals = new ArrayList<>();
         newAnimals.add(animal);
         animalMap.put(animal.getPosition(), newAnimals);
+        grassFreeSpots.remove(animal.getPosition());
     }
 
     // dunno if to throw exception or let it pass
     public void place(Grass grass) {
         if (!isOccupied(grass.getPosition())) {
             grassMap.put(grass.getPosition(), grass);
+            grassFreeSpots.remove(grass.getPosition());
         }
     }
 
@@ -168,6 +169,7 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
 
         if (animals.isEmpty()) {
             animalMap.remove(oldPosition);
+            grassFreeSpots.add(oldPosition);
         }
 
         place(animal);
@@ -182,6 +184,7 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
         animals.remove(animal);
         if (animals.isEmpty()) {
             animalMap.remove(animal.getPosition());
+            grassFreeSpots.add(animal.getPosition());
         }
     }
 
@@ -192,6 +195,10 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
     void replantGrass() {
         this.jungleWatcher.plantGrass(1);
         this.grasslandWatcher.plantGrass(1);
+    }
+
+    public List<Vector2d> getFreeGrassSpots() {
+        return grassFreeSpots.stream().collect(Collectors.toList());
     }
 
     @Override

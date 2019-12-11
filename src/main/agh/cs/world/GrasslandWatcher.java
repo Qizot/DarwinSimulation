@@ -6,6 +6,7 @@ import agh.cs.movement.Vector2d;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class GrasslandWatcher implements GrassPlanter  {
 
@@ -31,16 +32,11 @@ public class GrasslandWatcher implements GrassPlanter  {
         Vector2d lowerLeft = boundary.getLowerLeft();
         Vector2d upperRight = boundary.getUpperRight();
 
-        List<Vector2d> emptyPlaces = new ArrayList<>();
+        List<Vector2d> emptyPlaces = map.getFreeGrassSpots()
+                .stream()
+                .filter(v -> lowerLeft.precedes(v) && upperRight.follows(v) && !mustBeSkipped(v))
+                .collect(Collectors.toList());
 
-        for (int x = lowerLeft.x; x <= upperRight.x; x++) {
-            for (int y = lowerLeft.y; y <= upperRight.x; y++) {
-                Vector2d slot = new Vector2d(x, y);
-                if (!map.isOccupied(slot) && !mustBeSkipped(slot)) {
-                    emptyPlaces.add(slot);
-                }
-            }
-        }
         for (int i = 0; i < n; i++) {
             if (emptyPlaces.size() < 1) return;
             Vector2d emptyPlace = emptyPlaces.get(rand.nextInt(emptyPlaces.size()));
