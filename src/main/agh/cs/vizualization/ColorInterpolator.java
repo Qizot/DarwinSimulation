@@ -46,8 +46,8 @@ public class ColorInterpolator {
 
     private static final Color healthyAnimal = new Color(0,255,0);
     private static final Color dyingAnimal = new Color(255, 0, 0);
-    private static final Color grass = new Color(0, 0, 0);
-    private static final Color defaultColor = new Color(255,255,255);
+    private static final Color grass = new Color(12, 84, 23);
+    private static final Color defaultColor = new Color(217,255, 219);
 
     public static Color getColor(Object o) {
         if (o instanceof Animal) {

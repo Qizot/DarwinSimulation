@@ -19,8 +19,8 @@ public class AnimationMap extends JPanel {
         this.map = map;
         this.x = map.getConfig().getWidth();
         this.y = map.getConfig().getHeight();
-        this.PREFERRED_GRID_X_SIZE_PIXELS = 1600 / x;
-        this.PREFERRED_GRID_Y_SIZE_PIXELS = 1200 / y;
+        this.PREFERRED_GRID_X_SIZE_PIXELS = 1000 / x;
+        this.PREFERRED_GRID_Y_SIZE_PIXELS = 750 / y;
         int preferredWidth = x * PREFERRED_GRID_X_SIZE_PIXELS;
         int preferredHeight = y * PREFERRED_GRID_Y_SIZE_PIXELS;
         setPreferredSize(new Dimension(preferredWidth, preferredHeight));

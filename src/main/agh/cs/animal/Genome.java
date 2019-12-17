@@ -38,15 +38,14 @@ public class Genome {
 
         for (int i = 0; i < 8; i++) {
             if (geneTypesCount[i] == 0) {
-                for (int j = 0; j < 8; j++) {
-                    if (geneTypesCount[j] > 1) {
-                        geneTypesCount[i] += 1;
-                        geneTypesCount[j] -= 1;
-                        genes.remove(j);
-                        genes.add(i);
-                        break;
-                    }
-                }
+                int idx = rand.nextInt(8);
+                while (geneTypesCount[idx] < 2)
+                    idx = rand.nextInt(8);
+
+                geneTypesCount[i] += 1;
+                geneTypesCount[idx] -= 1;
+                genes.remove(idx);
+                genes.add(i);
             }
         }
 

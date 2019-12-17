@@ -50,7 +50,7 @@ public class PopulationChart {
         private Semaphore mutex = new Semaphore(1);
         List<Integer> animalsValues = new LinkedList<>();
         List<Integer> grassValues = new LinkedList<>();
-        private int repaintTick = 100;
+        private int repaintTick = 200;
         private int queueSize = 100;
 
 
@@ -119,10 +119,8 @@ public class PopulationChart {
 
             sw.repaintChart();
 
-
-
-
             long start = System.currentTimeMillis();
+
             long duration = System.currentTimeMillis() - start;
             try {
                 Thread.sleep(100 - duration); // 40 ms ==> 25fps
