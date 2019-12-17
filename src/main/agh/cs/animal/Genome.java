@@ -75,11 +75,10 @@ public class Genome {
         }
 
         while (i < secondCut) {
-            newGenes.add(firstGenes.get(i));
+            newGenes.add(secondGenes.get(i));
             i++;
         }
 
-        //
         while (i < genNum) {
             newGenes.add(firstGenes.get(i));
             i++;

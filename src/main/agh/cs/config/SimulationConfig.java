@@ -19,7 +19,26 @@ public class SimulationConfig {
 
     static public SimulationConfig loadConfigFromFile(String filename) throws FileNotFoundException {
         Gson gson = new Gson();
-        return (SimulationConfig)gson.fromJson(new FileReader(filename), SimulationConfig.class);
+        SimulationConfig cfg = (SimulationConfig)gson.fromJson(new FileReader(filename), SimulationConfig.class);
+        cfg.validate();
+        return cfg;
+    }
+
+    public void validate() {
+        if (width <= 0)
+            throw new IllegalArgumentException("width must be a positive integer");
+        if (height <= 0)
+            throw new IllegalArgumentException("width must be a positive integer");
+        if (startEnergy < 0)
+            throw new IllegalArgumentException("start energy must be non-negative");
+        if (jungleRatio <= 0.0 || jungleRatio >= 1.0)
+            throw new IllegalArgumentException("jungleRatio must be within range (0, 1)");
+        if (startAnimals <= 0)
+            throw new IllegalArgumentException("startAnimals must be non-negative");
+        if (startPlants <= 0)
+            throw new IllegalArgumentException("startPlants must be non-negative");
+        if (animationSpeed <= 0)
+            throw new IllegalArgumentException("animationSpeed must be a positive integer");
     }
 
     public int getWidth() {

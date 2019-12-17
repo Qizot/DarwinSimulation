@@ -26,6 +26,8 @@ public class DarwinSimulator extends  JPanel {
     private JLabel animalsLabel = new JLabel();
     private JLabel grassLabel = new JLabel();
 
+    private long lastExecution = System.currentTimeMillis();
+
     public DarwinSimulator() throws FileNotFoundException {
         config = SimulationConfig.loadConfigFromFile("/home/jakub/repos/DarwinSimulator/config.json");
         map = new WorldMap(config);
@@ -57,6 +59,8 @@ public class DarwinSimulator extends  JPanel {
 
         Runnable animate = new Runnable() {
             public void run() {
+                long startTime = System.currentTimeMillis();
+
                 controller.performCycle();
                 int animals = controller.animalsAfterCycle();
                 int grass = map.getGrasses().size();
@@ -65,6 +69,12 @@ public class DarwinSimulator extends  JPanel {
                 animalsLabel.setText("Animals: " + Integer.toString(animals));
                 grassLabel.setText("Grass: " + Integer.toString(grass));
                 repaint();
+
+//                long stopTime = System.currentTimeMillis();
+//                long elapsedTime = stopTime - startTime;
+//                System.out.println("Frame rendered in " + elapsedTime);
+//                System.out.println("Delay between frames " + (startTime - lastExecution));
+//                lastExecution = stopTime;
             }
         };
 
@@ -75,8 +85,7 @@ public class DarwinSimulator extends  JPanel {
     }
 
     private static void createAndShowGUI() {
-        //Make sure we have nice window decorations.
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame.setDefaultLookAndFeelDecorated(false);
 
         //Create and set up the window.
         JFrame frame = new JFrame("DarwinSimulator");

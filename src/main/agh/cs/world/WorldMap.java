@@ -5,13 +5,11 @@ import agh.cs.config.SimulationConfig;
 import agh.cs.movement.IPositionChangeObserver;
 import agh.cs.movement.LandBoundary;
 import agh.cs.movement.Vector2d;
-import agh.cs.vizualization.MapVisualizable;
-import agh.cs.vizualization.MapVisualizer;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class WorldMap implements IPositionChangeObserver, MapVisualizable {
+public class WorldMap implements IPositionChangeObserver {
 
     private SimulationConfig config;
     private JungleWatcher jungleWatcher;
@@ -198,12 +196,8 @@ public class WorldMap implements IPositionChangeObserver, MapVisualizable {
     }
 
     public List<Vector2d> getFreeGrassSpots() {
-        return grassFreeSpots.stream().collect(Collectors.toList());
+        return new ArrayList<>(grassFreeSpots);
     }
 
-    @Override
-    public String toString() {
-        return new MapVisualizer(this).draw(boundary.getLowerLeft(), boundary.getUpperRight());
-    }
 }
 
